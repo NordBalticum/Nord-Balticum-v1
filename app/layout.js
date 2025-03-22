@@ -3,7 +3,7 @@
 import styles from "@/styles/globals.css";
 import styles from "@/styles/theme.css";
 import { Inter } from "next/font/google";
-import { Providers } from "./providers";
+import { Providers } from "@/providers";
 import { DefaultSeo } from "next-seo";
 import SEO from "@/next-seo.config";
 
