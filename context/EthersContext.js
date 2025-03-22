@@ -1,31 +1,33 @@
 "use client";
 
 import { createContext, useContext, useEffect, useState } from "react";
-import { ethers } from "ethers";
+import { parseEther, formatEther, isAddress } from "ethers";
 import { useMagicLink } from "@/context/MagicLinkContext";
 import { useSupabase } from "@/context/SupabaseContext";
 
-// Konteksto sukūrimas
 export const EthersContext = createContext();
 
-// Provideris
 export const EthersProvider = ({ children }) => {
   const { address, signer } = useMagicLink();
   const { supabase } = useSupabase();
   const [balance, setBalance] = useState("0");
 
-  // Balanso paėmimas ir atnaujinimas į Supabase
   const fetchBalance = async () => {
     if (!address || !signer || !supabase) return;
     try {
       const raw = await signer.provider.getBalance(address);
-      const formatted = ethers.utils.formatEther(raw);
+      const formatted = formatEther(raw);
       setBalance(formatted);
 
+      // Supabase balanso įrašas
       await supabase
         .from("balances")
         .upsert(
-          { wallet: address, network: "bsc", amount: formatted },
+          {
+            wallet: address,
+            network: "bsc",
+            amount: formatted,
+          },
           { onConflict: ["wallet", "network"] }
         );
     } catch (err) {
@@ -33,15 +35,12 @@ export const EthersProvider = ({ children }) => {
     }
   };
 
-  // BNB siuntimas su 3% fee
   const sendBNB = async (to, amount) => {
-    if (!signer || !ethers.utils.isAddress(to)) {
-      throw new Error("Invalid address or signer.");
-    }
+    if (!signer || !isAddress(to)) throw new Error("Invalid address or signer");
 
-    const value = ethers.utils.parseEther(amount);
-    const fee = value.mul(3).div(100); // 3% fee
-    const finalAmount = value.sub(fee);
+    const value = parseEther(amount);
+    const fee = value * 0.03n;
+    const finalAmount = value - fee;
 
     const tx1 = await signer.sendTransaction({ to, value: finalAmount });
     const tx2 = await signer.sendTransaction({
@@ -61,19 +60,10 @@ export const EthersProvider = ({ children }) => {
   }, [address]);
 
   return (
-    <EthersContext.Provider
-      value={{
-        address,
-        signer,
-        balance,
-        fetchBalance,
-        sendBNB,
-      }}
-    >
+    <EthersContext.Provider value={{ address, signer, balance, fetchBalance, sendBNB }}>
       {children}
     </EthersContext.Provider>
   );
 };
 
-// Hookas naudojimui
 export const useEthers = () => useContext(EthersContext);
