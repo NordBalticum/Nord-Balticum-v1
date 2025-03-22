@@ -3,7 +3,7 @@ import "@/styles/globals.css";
 import "@/styles/theme.css";
 import { Inter } from "next/font/google";
 import { DefaultSeo } from "next-seo";
-import SEO from "@/next-seo.config";
+import SEO from "@/next-seo-config";
 
 import { SupabaseProvider } from "@/context/SupabaseContext";
 import { MagicLinkProvider } from "@/context/MagicLinkContext";
