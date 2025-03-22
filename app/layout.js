@@ -5,7 +5,7 @@ import styles from "@/styles/theme.css";
 import { Inter } from "next/font/google";
 import { Providers } from "./providers";
 import { DefaultSeo } from "next-seo";
-import SEO from "../next-seo.config";
+import SEO from "@/next-seo.config";
 
 const inter = Inter({ subsets: ["latin"] });
 
