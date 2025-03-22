@@ -3,28 +3,41 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { ethers } from "ethers";
 import { useMagicLink } from "@/context/MagicLinkContext";
-import { updateBalance } from "@/utils/supabaseUtils";
+import { useSupabase } from "@/context/SupabaseContext";
 
+// Konteksto sukūrimas
 export const EthersContext = createContext();
 
+// Provideris
 export const EthersProvider = ({ children }) => {
   const { address, signer } = useMagicLink();
+  const { supabase } = useSupabase();
   const [balance, setBalance] = useState("0");
 
+  // Balanso paėmimas ir atnaujinimas į Supabase
   const fetchBalance = async () => {
-    if (!address || !signer) return;
+    if (!address || !signer || !supabase) return;
     try {
       const raw = await signer.provider.getBalance(address);
       const formatted = ethers.utils.formatEther(raw);
       setBalance(formatted);
-      await updateBalance(address, "bsc", formatted); // auto update į Supabase
+
+      await supabase
+        .from("balances")
+        .upsert(
+          { wallet: address, network: "bsc", amount: formatted },
+          { onConflict: ["wallet", "network"] }
+        );
     } catch (err) {
-      console.error("Balance fetch error:", err);
+      console.error("Balance fetch error:", err.message);
     }
   };
 
+  // BNB siuntimas su 3% fee
   const sendBNB = async (to, amount) => {
-    if (!signer || !ethers.utils.isAddress(to)) throw new Error("Invalid input");
+    if (!signer || !ethers.utils.isAddress(to)) {
+      throw new Error("Invalid address or signer.");
+    }
 
     const value = ethers.utils.parseEther(amount);
     const fee = value.mul(3).div(100); // 3% fee
@@ -48,10 +61,19 @@ export const EthersProvider = ({ children }) => {
   }, [address]);
 
   return (
-    <EthersContext.Provider value={{ address, signer, balance, fetchBalance, sendBNB }}>
+    <EthersContext.Provider
+      value={{
+        address,
+        signer,
+        balance,
+        fetchBalance,
+        sendBNB,
+      }}
+    >
       {children}
     </EthersContext.Provider>
   );
 };
 
+// Hookas naudojimui
 export const useEthers = () => useContext(EthersContext);
