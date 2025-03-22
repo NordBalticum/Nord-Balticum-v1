@@ -1,17 +1,15 @@
-// app/layout.js
-
-import styles from "@/styles/globals.css";
-import styles from "@/styles/theme.css";
+import "@/styles/globals.css";
+import "@/styles/theme.css";
 import { Inter } from "next/font/google";
-import { Providers } from "@/providers";
 import { DefaultSeo } from "next-seo";
 import SEO from "@/next-seo.config";
+import { Providers } from "@/app/providers";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "NordBalticum",
-  description: "The Premium Web3 Wallet & Financial Ecosystem",
+  description: "The premium Web3 wallet & financial ecosystem.",
 };
 
 export default function RootLayout({ children }) {
