@@ -1,0 +1,92 @@
+:root {
+  /* 🌌 SPALVŲ PALETĖ */
+  --primary-light: #2B37FF;
+  --primary-dark: #1B2370;
+  --primary-bg: var(--primary-dark);
+  --primary-bg-dark: #0E0E52;
+  --gradient-bg: radial-gradient(circle at center, var(--primary-bg) 12%, var(--primary-bg-dark) 88%);
+
+  /* ✅ AKCENTAI */
+  --main-white: #F5F5F5;
+  --main-white-glow: rgba(255, 255, 255, 0.8);
+  --glass-effect: rgba(255, 255, 255, 0.08);
+  --button-bg: linear-gradient(145deg, #111111, #2B2B2B);
+
+  /* ✅ TEKSTAS */
+  --primary-text: var(--main-white);
+  --secondary-text: rgba(255, 255, 255, 0.85);
+  --text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* ✅ GLOBALUS FONAS IR FONTAS */
+html, body {
+  background: var(--gradient-bg);
+  background-size: cover;
+  color: var(--primary-text);
+  font-family: 'Poppins', sans-serif;
+  transition: background 0.4s ease, color 0.4s ease;
+}
+
+/* ✅ UNIVERSALUS TEKSTAS */
+h1, h2, h3, p, a, span, strong {
+  color: var(--primary-text);
+  text-shadow: var(--text-shadow);
+}
+
+/* ✅ BUTTON – BANKINIO LYGIO */
+button {
+  background: var(--button-bg);
+  color: var(--main-white);
+  border: 2px solid var(--main-white);
+  border-radius: 12px;
+  padding: clamp(12px, 1.6vw, 16px) clamp(24px, 2.6vw, 36px);
+  font-size: clamp(1rem, 1.4vw, 1.3rem);
+  font-weight: 600;
+  text-transform: uppercase;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0px 3px 10px rgba(255, 255, 255, 0.1);
+}
+
+button:hover {
+  background: var(--main-white);
+  color: #000000;
+  border-color: var(--main-white);
+  box-shadow: 0px 0px 16px var(--main-white-glow);
+  transform: scale(1.05);
+}
+
+/* ✅ GLASS UI */
+.glassBox {
+  backdrop-filter: blur(14px);
+  background: var(--glass-effect);
+  border-radius: 14px;
+  padding: clamp(16px, 2vw, 24px);
+  box-shadow: 0 0 24px rgba(255, 255, 255, 0.15);
+}
+
+/* ✅ FORM ELEMENTAI */
+input, select {
+  background: rgba(255, 255, 255, 0.06);
+  border: 2px solid var(--main-white);
+  color: var(--primary-text);
+  font-size: clamp(1rem, 1.2vw, 1.3rem);
+  padding: clamp(10px, 1.4vw, 14px);
+  border-radius: 10px;
+  transition: all 0.3s ease-in-out;
+}
+
+input:focus, select:focus {
+  outline: none;
+  box-shadow: 0px 0px 12px var(--main-white-glow);
+  transform: scale(1.02);
+}
+
+/* ✅ ANIMACIJA */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fadeIn {
+  animation: fadeIn 0.5s ease-in-out;
+}

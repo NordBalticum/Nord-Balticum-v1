@@ -1,0 +1,115 @@
+/* ✅ Konteineris */
+.container {
+  padding: clamp(24px, 5vw, 48px);
+  display: flex;
+  justify-content: center;
+}
+
+/* ✅ Siuntimo blokas */
+.sendBox {
+  background: var(--glass-effect);
+  backdrop-filter: blur(14px);
+  border-radius: 18px;
+  padding: clamp(24px, 4vw, 36px);
+  max-width: 480px;
+  width: 100%;
+  box-shadow: 0 0 32px rgba(255, 255, 255, 0.12);
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+/* ✅ Pavadinimas */
+.title {
+  font-size: clamp(1.4rem, 2vw, 1.8rem);
+  font-weight: 700;
+  color: var(--primary-text);
+  margin-bottom: 1rem;
+  text-align: center;
+  text-shadow: var(--text-shadow);
+}
+
+/* ✅ Mygtukų perjungiklis (BNB / Token) */
+.switch {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1.2rem;
+}
+
+.active {
+  background: var(--primary-text);
+  color: black;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  box-shadow: 0 0 10px var(--accent-glow);
+  cursor: default;
+}
+
+.inactive {
+  background: transparent;
+  border: 2px solid var(--primary-text);
+  color: var(--primary-text);
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.inactive:hover {
+  background: var(--primary-text);
+  color: black;
+  box-shadow: 0 0 12px var(--accent-glow);
+}
+
+/* ✅ Inputai ir Select'ai */
+.input,
+.select {
+  width: 100%;
+  padding: 0.75rem;
+  margin-top: 0.6rem;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--primary-text);
+  border: 2px solid var(--primary-text);
+  border-radius: 10px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.input:focus,
+.select:focus {
+  outline: none;
+  box-shadow: 0 0 12px var(--accent-glow);
+  transform: scale(1.02);
+}
+
+/* ✅ Siuntimo mygtukas */
+.sendButton {
+  margin-top: 1.5rem;
+  width: 100%;
+  padding: 0.85rem;
+  background: var(--button-bg);
+  color: var(--primary-text);
+  border: 2px solid var(--primary-text);
+  font-weight: bold;
+  font-size: 1rem;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.15);
+}
+
+.sendButton:hover {
+  background: var(--primary-text);
+  color: black;
+  box-shadow: 0 0 18px var(--accent-glow);
+  transform: scale(1.05);
+}
+
+/* ✅ Pranešimas apie būseną */
+.statusMessage {
+  margin-top: 1rem;
+  font-size: 0.95rem;
+  color: var(--primary-text);
+  text-align: center;
+  text-shadow: var(--text-shadow);
+}

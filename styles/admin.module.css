@@ -1,0 +1,55 @@
+.container {
+  max-width: 840px;
+  margin: 40px auto;
+  padding: 2.5rem;
+  color: var(--primary-text);
+  text-align: center;
+  background: var(--glass-effect);
+  border-radius: 18px;
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.08);
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: var(--primary-text);
+  text-shadow: var(--text-shadow);
+}
+
+.text {
+  margin-bottom: 2rem;
+  font-size: 1.2rem;
+  opacity: 0.9;
+  color: var(--secondary-text);
+}
+
+.links {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-top: 20px;
+}
+
+.links li a {
+  background: rgba(255, 255, 255, 0.04);
+  padding: 0.9rem 1.4rem;
+  border-radius: 14px;
+  display: block;
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--primary-text);
+  text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 14px rgba(255, 255, 255, 0.06);
+  transition: all 0.3s ease;
+}
+
+.links li a:hover {
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 20px var(--accent-glow);
+  transform: scale(1.03);
+}

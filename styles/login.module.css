@@ -1,0 +1,90 @@
+/* ✅ Fullscreen Background Container */
+.container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--gradient-bg);
+  background-size: cover;
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+/* ✅ Glassmorphic Login Box */
+.loginBox {
+  width: 100%;
+  max-width: 420px;
+  padding: clamp(20px, 4vw, 28px);
+  text-align: center;
+  background: var(--glass-effect);
+  border-radius: 18px;
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(18px);
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+/* ✅ Title */
+.title {
+  font-size: clamp(1.6rem, 2.2vw, 2rem);
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-shadow: var(--text-shadow);
+}
+
+/* ✅ Input Field */
+.input {
+  width: 100%;
+  padding: clamp(10px, 1.4vw, 14px);
+  font-size: clamp(1rem, 1.2vw, 1.2rem);
+  border-radius: 12px;
+  border: 2px solid var(--main-white);
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--primary-text);
+  margin-bottom: 16px;
+  transition: all 0.3s ease-in-out;
+}
+
+.input:focus {
+  outline: none;
+  box-shadow: 0 0 16px var(--main-white-glow);
+  transform: scale(1.02);
+}
+
+/* ✅ Login Button */
+.loginButton {
+  width: 100%;
+  padding: clamp(12px, 1.4vw, 16px);
+  font-size: clamp(1.1rem, 1.5vw, 1.3rem);
+  font-weight: 700;
+  color: #000;
+  background: var(--main-white);
+  border: 2px solid var(--main-white);
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  box-shadow: 0 3px 12px rgba(255, 255, 255, 0.15);
+}
+
+.loginButton:hover {
+  background: black;
+  color: var(--main-white);
+  box-shadow: 0 0 20px var(--main-white-glow);
+  transform: scale(1.05);
+}
+
+/* ✅ Success Message */
+.successMessage {
+  color: var(--main-white);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-top: 16px;
+}
+
+/* ✅ Error Message */
+.errorMessage {
+  color: #FF4B4B;
+  font-size: 1rem;
+  font-weight: 500;
+  margin-top: 12px;
+}

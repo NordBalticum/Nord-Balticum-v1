@@ -1,0 +1,114 @@
+.container {
+  max-width: 880px;
+  margin: 40px auto;
+  padding: 32px;
+  background: var(--glass-effect);
+  border-radius: 18px;
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.08);
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.title {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary-text);
+  margin-bottom: 24px;
+  text-shadow: var(--text-shadow);
+}
+
+.walletBox {
+  background: rgba(255, 255, 255, 0.04);
+  padding: 20px;
+  border-radius: 14px;
+  margin-bottom: 30px;
+  box-shadow: 0 0 16px rgba(255, 255, 255, 0.05);
+}
+
+.label {
+  color: var(--secondary-text);
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 4px;
+}
+
+.address {
+  color: var(--primary-text);
+  word-break: break-word;
+  font-size: 0.95rem;
+  opacity: 0.95;
+}
+
+.balance {
+  margin-top: 10px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #93efff;
+}
+
+.tokensSection {
+  background: rgba(255, 255, 255, 0.03);
+  padding: 20px;
+  border-radius: 14px;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.05);
+}
+
+.subtitle {
+  font-size: 1.4rem;
+  color: var(--primary-text);
+  font-weight: 600;
+  margin-bottom: 12px;
+  text-shadow: var(--text-shadow);
+}
+
+.info {
+  color: var(--secondary-text);
+  text-align: center;
+  font-size: 0.95rem;
+  opacity: 0.8;
+}
+
+.tokenList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.tokenItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.035);
+  padding: 14px 20px;
+  margin-bottom: 12px;
+  border-radius: 10px;
+  color: var(--primary-text);
+  transition: background 0.3s ease;
+}
+
+.tokenItem:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.tokenLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.tokenName {
+  font-weight: 600;
+  color: var(--primary-text);
+}
+
+.tokenAddress {
+  font-size: 0.82rem;
+  color: var(--secondary-text);
+  opacity: 0.9;
+}
+
+.tokenRight {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #7dfcff;
+}

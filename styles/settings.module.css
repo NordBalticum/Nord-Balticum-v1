@@ -1,0 +1,120 @@
+/* ✅ Pagrindinis konteineris */
+.container {
+  max-width: 880px;
+  margin: 4rem auto;
+  padding: clamp(24px, 5vw, 40px);
+  background: var(--glass-effect);
+  backdrop-filter: blur(14px);
+  border-radius: 18px;
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+/* ✅ Antraštė */
+.title {
+  text-align: center;
+  color: var(--primary-text);
+  font-size: clamp(1.6rem, 2vw, 2rem);
+  font-weight: 700;
+  margin-bottom: 2rem;
+  text-shadow: var(--text-shadow);
+}
+
+/* ✅ Sekcijos */
+.section {
+  margin-bottom: 2.5rem;
+}
+
+/* ✅ Žymės (label) */
+.label {
+  color: var(--primary-text);
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 6px;
+  display: block;
+  text-shadow: var(--text-shadow);
+}
+
+/* ✅ Teksto reikšmė (adresai, el. paštas) */
+.value {
+  color: var(--primary-text);
+  font-size: 1rem;
+  word-break: break-word;
+  margin-top: 0.3rem;
+  text-shadow: var(--text-shadow);
+}
+
+/* ✅ BNB balansas */
+.balance {
+  color: var(--secondary-text);
+  font-size: 0.95rem;
+  margin-top: 6px;
+}
+
+/* ✅ Įvedimo laukeliai */
+.input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--primary-text);
+  font-size: 1rem;
+  border: 2px solid var(--primary-text);
+  margin-top: 8px;
+  margin-bottom: 12px;
+  transition: all 0.3s ease-in-out;
+}
+
+.input:focus {
+  outline: none;
+  box-shadow: 0 0 12px var(--accent-glow);
+  transform: scale(1.02);
+}
+
+/* ✅ Standartinis mygtukas */
+.button {
+  background: var(--button-bg);
+  color: var(--primary-text);
+  padding: 12px 24px;
+  border: 2px solid var(--primary-text);
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  width: fit-content;
+}
+
+.button:hover {
+  background: var(--primary-text);
+  color: black;
+  box-shadow: 0 0 14px var(--accent-glow);
+  transform: scale(1.04);
+}
+
+/* ✅ Pavojingas mygtukas (delete account) */
+.danger {
+  background: #ff4d4f;
+  color: #fff;
+  padding: 12px 26px;
+  border-radius: 12px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+
+.danger:hover {
+  background: #cc393b;
+  box-shadow: 0 0 14px rgba(255, 77, 79, 0.4);
+  transform: scale(1.05);
+}
+
+/* ✅ Statuso pranešimas */
+.status {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 1rem;
+  color: var(--primary-text);
+  opacity: 0.85;
+  text-shadow: var(--text-shadow);
+}

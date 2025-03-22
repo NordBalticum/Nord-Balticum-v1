@@ -1,0 +1,65 @@
+/* ✅ Konteineris – Fullscreen Luxury Background */
+.container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--gradient-bg);
+  background-size: cover;
+  text-align: center;
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+/* ✅ Logo – su Glow + animacija */
+.logoWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.logo {
+  width: clamp(120px, 18vw, 180px);
+  filter: drop-shadow(0 0 15px var(--main-white-glow));
+  transition: transform 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+}
+
+/* ✅ Subtekstas */
+.subtext {
+  font-size: clamp(1rem, 1.5vw, 1.6rem);
+  opacity: 0.88;
+  font-weight: 400;
+  letter-spacing: 0.6px;
+  color: var(--primary-text);
+  text-shadow: var(--text-shadow);
+  margin-bottom: 30px;
+}
+
+/* ✅ Starto mygtukas */
+.startButton {
+  background: var(--button-bg);
+  color: var(--main-white);
+  border: 2px solid var(--main-white);
+  padding: clamp(14px, 1.6vw, 18px) clamp(38px, 4vw, 50px);
+  font-size: clamp(1.1rem, 1.8vw, 1.5rem);
+  font-weight: bold;
+  text-transform: uppercase;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 12px rgba(255, 255, 255, 0.1);
+}
+
+.startButton:hover {
+  background: var(--main-white);
+  color: black;
+  transform: scale(1.06);
+  box-shadow: 0px 0px 18px var(--main-white-glow);
+  border: 2px solid var(--main-white);
+}

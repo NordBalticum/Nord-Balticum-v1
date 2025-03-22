@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 🌌 MAXIMUM FULLSCREEN CONFIGURATION */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--gradient-bg);
+  background-size: cover;
+  overflow: hidden;
+  transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* ✅ GLOBAL CONTAINER – ADAPTIVE CENTERED LAYOUT */
+.globalContainer {
+  width: min(92vw, 1400px);
+  height: min(92vh, 800px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* ✅ CONTENT WRAPPER – FLEXIBLE INNER BLOCK */
+.contentWrapper {
+  width: 100%;
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ✅ RESPONSIVE MEDIA QUERIES */
+@media (max-width: 1200px) {
+  .globalContainer {
+    width: min(94vw, 1200px);
+    height: min(94vh, 700px);
+  }
+}
+
+@media (max-width: 992px) {
+  .globalContainer {
+    width: min(96vw, 1000px);
+    height: min(96vh, 600px);
+  }
+}
+
+@media (max-width: 768px) {
+  .globalContainer {
+    width: min(98vw, 800px);
+    height: min(98vh, 500px);
+  }
+}
+
+@media (max-width: 576px) {
+  .globalContainer {
+    width: 100vw;
+    height: 100vh;
+    padding: 10px;
+  }
+}
