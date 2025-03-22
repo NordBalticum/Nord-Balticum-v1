@@ -1,11 +1,6 @@
-// app/layout.js
-import "@/styles/globals.css";
-import "@/styles/theme.css";
-
+import styles from "@/styles/globals.css";
+import styles from "@/styles/theme.css";
 import { Inter } from "next/font/google";
-import { DefaultSeo } from "next-seo";
-import SEO from "@/next-seo-config";
-
 import { SupabaseProvider } from "@/context/SupabaseContext";
 import { MagicLinkProvider } from "@/context/MagicLinkContext";
 import { AuthProvider } from "@/context/AuthContext";
@@ -22,9 +17,6 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <head>
-        <DefaultSeo {...SEO} />
-      </head>
       <body className={inter.className} suppressHydrationWarning={true}>
         <SupabaseProvider>
           <MagicLinkProvider>
