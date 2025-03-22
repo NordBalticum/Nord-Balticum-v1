@@ -1,62 +1,56 @@
 "use client";
 
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { ethers } from "ethers";
-import { useMagicLink } from "@/context/MagicLinkContext";
-import ERC20_ABI from "@/abis/erc20.json"; // Įsitikink, kad failas yra `abis/erc20.json`
+import ERC20_ABI from "@/lib/abi/erc20.json";
 
-export const EthersTokenContext = createContext();
+const EthersTokenContext = createContext();
 
 export const EthersTokenProvider = ({ children }) => {
-  const { signer, address } = useMagicLink();
-  const [tokens, setTokens] = useState([]);
+  const [provider, setProvider] = useState(null);
+  const [address, setAddress] = useState(null);
+  const [usdtBalance, setUsdtBalance] = useState("0");
+  const [daiBalance, setDaiBalance] = useState("0");
 
-  const fetchTokenBalance = async (tokenAddress) => {
-    if (!signer || !tokenAddress) return "0";
-    const contract = new ethers.Contract(tokenAddress, ERC20_ABI, signer);
-    const raw = await contract.balanceOf(address);
-    return ethers.utils.formatUnits(raw, 18);
-  };
-
-  const sendToken = async (tokenAddress, to, amount) => {
-    const contract = new ethers.Contract(tokenAddress, ERC20_ABI, signer);
-    const decimals = await contract.decimals();
-    const value = ethers.utils.parseUnits(amount, decimals);
-    const fee = value.mul(3).div(100);
-    const finalAmount = value.sub(fee);
-
-    const tx1 = await contract.transfer(to, finalAmount);
-    const tx2 = await contract.transfer(process.env.NEXT_PUBLIC_ADMIN_WALLET, fee);
-
-    await tx1.wait();
-    await tx2.wait();
-
-    return { tx1, tx2 };
-  };
-
-  const loadTokens = async () => {
-    // Custom token list
-    const predefined = [
-      { symbol: "USDT", address: process.env.NEXT_PUBLIC_USDT_ADDRESS },
-      { symbol: "DAI", address: process.env.NEXT_PUBLIC_DAI_ADDRESS },
-    ];
-
-    const enriched = await Promise.all(
-      predefined.map(async (token) => {
-        const balance = await fetchTokenBalance(token.address);
-        return { ...token, balance };
-      })
-    );
-
-    setTokens(enriched);
-  };
+  // ✅ USDT ir DAI adresai BSC tinkle
+  const USDT_ADDRESS = "0x55d398326f99059fF775485246999027B3197955";
+  const DAI_ADDRESS = "0x1AF3F329e8BE154074D8769D1FFa4eE058B1DBc3";
 
   useEffect(() => {
-    if (address && signer) loadTokens();
-  }, [address]);
+    if (typeof window !== "undefined" && window.ethereum) {
+      const ethProvider = new ethers.providers.Web3Provider(window.ethereum);
+      setProvider(ethProvider);
+      ethProvider.getSigner().getAddress().then(setAddress).catch(() => {});
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!provider || !address) return;
+
+    const fetchBalances = async () => {
+      try {
+        const signer = provider.getSigner();
+        const usdtContract = new ethers.Contract(USDT_ADDRESS, ERC20_ABI, signer);
+        const daiContract = new ethers.Contract(DAI_ADDRESS, ERC20_ABI, signer);
+
+        const usdtRaw = await usdtContract.balanceOf(address);
+        const daiRaw = await daiContract.balanceOf(address);
+
+        const usdtDecimals = await usdtContract.decimals();
+        const daiDecimals = await daiContract.decimals();
+
+        setUsdtBalance(ethers.utils.formatUnits(usdtRaw, usdtDecimals));
+        setDaiBalance(ethers.utils.formatUnits(daiRaw, daiDecimals));
+      } catch (err) {
+        console.error("Error fetching token balances:", err);
+      }
+    };
+
+    fetchBalances();
+  }, [provider, address]);
 
   return (
-    <EthersTokenContext.Provider value={{ tokens, sendToken, fetchTokenBalance }}>
+    <EthersTokenContext.Provider value={{ usdtBalance, daiBalance }}>
       {children}
     </EthersTokenContext.Provider>
   );
