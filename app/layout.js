@@ -1,3 +1,5 @@
+// app/layout.js
+
 import "./globals.css";
 import "../styles/theme.css";
 import { Inter } from "next/font/google";
@@ -9,7 +11,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "NordBalticum",
-  description: "The premium Web3 wallet & financial ecosystem.",
+  description: "The Premium Web3 Wallet & Financial Ecosystem",
 };
 
 export default function RootLayout({ children }) {
@@ -18,7 +20,7 @@ export default function RootLayout({ children }) {
       <head>
         <DefaultSeo {...SEO} />
       </head>
-      <body className={inter.className}>
+      <body className={inter.className} suppressHydrationWarning={true}>
         <Providers>{children}</Providers>
       </body>
     </html>
