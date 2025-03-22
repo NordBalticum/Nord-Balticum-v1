@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useContext, useEffect, useState } from "react";
-import { ethers } from "ethers";
+import { JsonRpcProvider } from "ethers";
 import ERC20_ABI from "@/lib/abi/erc20.json";
 
 const EthersTokenContext = createContext();
