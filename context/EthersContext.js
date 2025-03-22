@@ -38,8 +38,8 @@ export const EthersProvider = ({ children }) => {
   const sendBNB = async (to, amount) => {
     if (!signer || !isAddress(to)) throw new Error("Invalid address or signer");
 
-    const value = parseEther(amount);
-    const fee = value * 0.03n;
+    const value = parseEther(amount); // parseEther returns a BigInt
+    const fee = (BigInt(value) * 3n) / 100n; // Convert value to BigInt and calculate fee
     const finalAmount = value - fee;
 
     const tx1 = await signer.sendTransaction({ to, value: finalAmount });
